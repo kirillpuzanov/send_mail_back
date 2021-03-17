@@ -32,7 +32,7 @@ app.post('/sendMessage', async (req, res) => {
       from: userName, email,
       to: 'kirillpuzanov@mail.ru',
       subject: 'Сообщение от просмотревшего CV',
-      html: `<b>${message}</b>`
+      html: `<b>от ${ userName}/"${email}": ${message}</b>`
    });
    res.status(200).json( "sent success");
 })

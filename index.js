@@ -2,15 +2,14 @@ const express = require('express')
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 
 const app = express()
 const port = process.env.PORT || 3008;
 dotenv.config()
-
+app.use(cors())
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 let transporter = nodemailer.createTransport({
@@ -25,6 +24,7 @@ app.get('/', (req, res) => {
    res.send('Hello World!!!!')
 })
 
+// "https://safe-fjord-00802.herokuapp.com/" base url heroku
 app.post('/sendMessage', async (req, res) => {
    const {email, userName, message} = req.body;
 
